@@ -6,17 +6,19 @@ class Clock {
         this.formatFull = !this.formatFull;
         });
     }
+
     render() {
-        const date = new Date(),
-            hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
-            minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes(),
-            seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
+        const date = new Date();
+            let hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours();
+            let minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
+            let seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
         if (!this.formatFull) {
             this.clockNode.innerHTML = hours + ':' + minutes;
         } else {
             this.clockNode.innerHTML = hours + ':' + minutes + ':' + seconds;
         }
     }
+
     start() {
         this.render();
         this.timer = setInterval(() => this.render(), 1000);
@@ -27,11 +29,36 @@ class FullFormatClock extends Clock{
     constructor(clockNode) {
         super (clockNode);
     }
+
+    render() {
+        const date = new Date();
+            let hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours();
+            let minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
+            let seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
+        if (!this.formatFull) {
+            this.clockNode.innerHTML = hours + '-' + minutes;
+        } else {
+            this.clockNode.innerHTML = hours + '-' + minutes + '-' + seconds;
+        }
+    }
 }
+
 class ShortFormatClock extends Clock{
     constructor(clockNode) {
         super (clockNode);
         this.formatFull = false;
+    }
+
+    render() {
+        const date = new Date();
+            let hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours();
+            let minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
+            let seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
+        if (!this.formatFull) {
+            this.clockNode.innerHTML = hours + ' ' + minutes;
+        } else {
+            this.clockNode.innerHTML = hours + ' ' + minutes + ' ' + seconds;
+        }
     }
 }
 
